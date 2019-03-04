@@ -11,9 +11,10 @@
         <script src="blockly/blocks_compressed.js"></script>
         <script src="blockly/msg/js/en.js"></script>
         <script src="blockly/blocks/customblocks.js"></script>
+        <script src="blockly/generators/python/trexStubs.js"></script>
     </head>
     <body>
-        <div id="blocklyDiv" style="height: 1920px; width: 1080px;">
+        <div id="blocklyDiv" style="height: 700px; width: 900px;">
             <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
               <category name="Logic" colour="#5C81A6">
                 <block type="controls_if"></block>
@@ -331,7 +332,7 @@
               <sep></sep>
               <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
               <sep></sep>
-              <category name="Preprocessing" colour="#a55b5b">
+              <category name="Preprocessing" colour="#303FAE">
                 <block type="missing_data">
                   <field name="option_md">remove_md</field>
                 </block>
@@ -343,14 +344,14 @@
                   <field name="option_dups">zero_v</field>
                 </block>
               </category>
-              <category name="Linear Regression" colour="#6da55b">
+              <category name="Linear Regression" colour="#007D5B">
                 <block type="linear_reg"></block>
                 <block type="fit">
                   <field name="train_select">x_train</field>
                 </block>
                 <block type="predict"></block>
               </category>
-              <category name="Testing" colour="#5ba5a5">
+              <category name="Testing" colour="#FF9900">
                 <block type="select_feature"></block>
                 <block type="test_feature">
                   <field name="x">feature</field>
