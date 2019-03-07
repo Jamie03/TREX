@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="blockly/blockly_compressed.js"></script>
         <script src="blockly/blocks_compressed.js"></script>
+        <script src="blockly/python_compressed.js"></script>
         <script src="blockly/msg/js/en.js"></script>
         <script src="blockly/blocks/customblocks.js"></script>
         <script src="blockly/generators/python/trexStubs.js"></script>
@@ -370,10 +371,8 @@
                 {toolbox: document.getElementById('toolbox')});
             
             function runCode(){
-                //window.LoopTrap = 1000;
-                //Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+                Blockly.Python.addReservedWords('code');
                 var code = Blockly.Python.workspaceToCode(workspace);
-                //Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
                 console.log(code)
             }
         </script>
