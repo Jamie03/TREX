@@ -1,9 +1,7 @@
 Blockly.Blocks['linear_reg'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Linear Reg");
-    this.appendStatementInput("linear_param")
-        .setCheck("Array");
+        .appendField("Create Linear Reg");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
@@ -14,10 +12,12 @@ Blockly.Blocks['linear_reg'] = {
 
 Blockly.Blocks['fit'] = {
   init: function() {
-    this.appendValueInput("X")
-        .setCheck("Array")
-        .appendField("Fit")
-        .appendField(new Blockly.FieldDropdown([["X Train","x_train"], ["y Train","y_train"], ["Weights","weights"]]), "train_select");
+    this.appendValueInput("x_train")
+        .setCheck(null)
+        .appendField("Fit X Train");
+    this.appendValueInput("y_train")
+        .setCheck(null)
+        .appendField("Fit Y Train");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(120);
@@ -32,22 +32,10 @@ Blockly.Blocks['predict'] = {
         .setCheck("Array")
         .appendField("Predict");
     this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(105);
  this.setTooltip("Predict using the linear model.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.predict");
-  }
-};
-
-Blockly.Blocks['select_feature'] = {
-  init: function() {
-    this.appendValueInput("NAME")
-        .setCheck("String")
-        .appendField("Select");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(0);
- this.setTooltip("Selects feature to be tested.");
- this.setHelpUrl("");
   }
 };
 

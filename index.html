@@ -11,8 +11,8 @@
         <script src="blockly/blocks_compressed.js"></script>
         <script src="blockly/python_compressed.js"></script>
         <script src="blockly/msg/js/en.js"></script>
-        <script src="blockly/blocks/customblocks.js"></script>
-        <script src="blockly/generators/python/trexStubs.js"></script>
+        <script src="blockly/blocks/trex_blocks.js"></script>
+        <script src="blockly/generators/python/trex_stubs.js"></script>
     </head>
     <body>
         <div id="blocklyDiv" style="height: 700px; width: 900px;">
@@ -333,7 +333,7 @@
               <sep></sep>
               <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
               <sep></sep>
-              <category name="Preprocessing" colour="#303FAE">
+              <category name="Preprocessing" colour="#5ba5a5">
                 <block type="missing_data">
                   <field name="option_md">remove_md</field>
                 </block>
@@ -345,20 +345,121 @@
                   <field name="option_dups">zero_v</field>
                 </block>
               </category>
-              <category name="Linear Regression" colour="#007D5B">
+              <category name="Linear Regression" colour="#6da55b">
                 <block type="linear_reg"></block>
                 <block type="fit">
-                  <field name="train_select">x_train</field>
+                  <value name="x_train">
+                    <block type="variables_get">
+                      <field name="VAR" id="]86A{uj6.|KLSg{xQ4c1" variabletype="">x_train</field>
+                    </block>
+                  </value>
+                  <value name="y_train">
+                    <block type="variables_get">
+                      <field name="VAR" id="m}x8ZlOTSWxYx`arf41K" variabletype="">y_train</field>
+                    </block>
+                  </value>
                 </block>
-                <block type="predict"></block>
+                <block type="predict">
+                  <value name="X">
+                    <block type="variables_get">
+                      <field name="VAR" id="bL!Y7sbk*snS-Q_X(Qs^" variabletype="">x_test</field>
+                    </block>
+                  </value>
+                </block>
               </category>
-              <category name="Testing" colour="#FF9900">
-                <block type="select_feature"></block>
+              <category name="Testing" colour="#a55b5b">
                 <block type="test_feature">
                   <field name="x">feature</field>
                   <field name="testval">0</field>
                 </block>
               </category>
+            </xml>
+            <xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
+              <variables>
+                <variable type="" id="^lw_*0(`P^49/gwHx(B3">x_train</variable>
+                <variable type="" id="@1;o/,uYkSWM;4bYy8F4">y_train</variable>
+                <variable type="" id="2~=#=l%VcP)nLnVr3P(I">x_test</variable>
+              </variables>
+              <block type="variables_set" id="atck(]0Mg)P8@YEI?mhN" x="38" y="63">
+                <field name="VAR" id="^lw_*0(`P^49/gwHx(B3" variabletype="">x_train</field>
+                <value name="VALUE">
+                  <block type="math_number" id="HsD~y+??Y{xWQ0D3Q~Ys">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="lR/n{@RL2GSCMJKqr/Ku">
+                    <field name="VAR" id="@1;o/,uYkSWM;4bYy8F4" variabletype="">y_train</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="toDMlzSAovh4C[G6pp#2">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="c,RE/}qo{yEL4^1rlNJ9">
+                        <field name="VAR" id="2~=#=l%VcP)nLnVr3P(I" variabletype="">x_test</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="Z;F)%H+rJC]0OvHK~T~I">
+                            <field name="NUM">3</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="missing_data" id="3;f7i0N}oQftd2rj:,gn">
+                            <field name="option_md">remove_md</field>
+                            <next>
+                              <block type="outliers" id="-srVP],mjDh_UNxzyyET">
+                                <field name="option_ol">replace_ol</field>
+                                <next>
+                                  <block type="std_features" id="tHYx@pWFggn.^|qIJ8-s">
+                                    <next>
+                                      <block type="remove_dups" id="-ro|dtT)ar0q|ZyB{##K">
+                                        <field name="option_dups">dups</field>
+                                        <next>
+                                          <block type="linear_reg" id=")DSH~lk,3iCIjWsue1{@">
+                                            <next>
+                                              <block type="predict" id="R2I[8XDIi*NyBICki5=H">
+                                                <value name="X">
+                                                  <block type="variables_get" id="Nn}dkzjVh~XA8g]sj:*-">
+                                                    <field name="VAR" id="2~=#=l%VcP)nLnVr3P(I" variabletype="">x_test</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="fit" id="_b*~en_Cey:@0%By+T(l">
+                                                    <value name="x_train">
+                                                      <block type="variables_get" id="OQ.w0x(kz,aeObwKbR+}">
+                                                        <field name="VAR" id="^lw_*0(`P^49/gwHx(B3" variabletype="">x_train</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="y_train">
+                                                      <block type="variables_get" id=";y)q/T320TSoeW1e$XsT">
+                                                        <field name="VAR" id="@1;o/,uYkSWM;4bYy8F4" variabletype="">y_train</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="test_feature" id="kiS,yEv5O(Dd$]_X%BRH">
+                                                        <field name="x">feature</field>
+                                                        <field name="testval">25</field>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
             </xml>
         </div>
         <button onclick="runCode()">Run CodeBlocks</button>
@@ -367,8 +468,36 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script>
-            var workspace = Blockly.inject('blocklyDiv',
-                {toolbox: document.getElementById('toolbox')});
+            /* TODO: Change toolbox XML ID if necessary. Can export toolbox XML from Workspace Factory. */
+            var toolbox = document.getElementById("toolbox");
+
+            var options = { 
+                toolbox : toolbox, 
+                collapse : true, 
+                comments : true, 
+                disable : true, 
+                maxBlocks : Infinity, 
+                trashcan : true, 
+                horizontalLayout : false, 
+                toolboxPosition : 'start', 
+                css : true, 
+                media : 'https://blockly-demo.appspot.com/static/media/', 
+                rtl : false, 
+                scrollbars : true, 
+                sounds : true, 
+                oneBasedIndex : true
+            };
+
+            /* Inject your workspace */ 
+            var workspace = Blockly.inject(blocklyDiv, options);
+
+            /* Load Workspace Blocks from XML to workspace. Remove all code below if no blocks to load */
+
+            /* TODO: Change workspace blocks XML ID if necessary. Can export workspace blocks XML from Workspace Factory. */
+            var workspaceBlocks = document.getElementById("workspaceBlocks"); 
+
+            /* Load blocks to workspace. */
+            Blockly.Xml.domToWorkspace(workspaceBlocks, workspace);
             
             function runCode(){
                 Blockly.Python.addReservedWords('code');
