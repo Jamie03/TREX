@@ -482,14 +482,13 @@
                 var code = Blockly.Python.workspaceToCode(workspace);
                 console.log(code)
 
-
                 $.ajax({
                   url: "/codespace/api/create_model/" ,
                   type: "POST",
                   data: {'code': code},
 
                   // handle a successful response
-                  success : function(json) {
+                  success : function(json) {  
                       console.log(json); // log the returned json to the console
                       console.log("success"); // another sanity check
                   },
@@ -497,9 +496,6 @@
                   error : function(xhr,errmsg,err) {
                       console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
                   }
-
-
-
                 });
             }
 
