@@ -1,0 +1,27 @@
+.sandbox {
+    min-height: 600px !important;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 35px;
+    padding-bottom: 1em;
+}
+
+#post-runcode {
+    margin: 1em 0;
+}
+
+#codegen {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #28a745;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
