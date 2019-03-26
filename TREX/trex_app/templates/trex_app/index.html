@@ -384,6 +384,10 @@
                           <field name="x">feature</field>
                           <field name="testval">0</field>
                         </block>
+                        <block type="get_coefficients"></block>
+                        <block type="get_mean2error"></block>
+                        <block type="get_accuracy"></block>
+                        <block type="import_temp"></block>
                       </category>
                     </xml>
                     <xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
@@ -428,6 +432,27 @@
                                                 <field name="VAR" id="=tozp2dKhkAX(d)c1}#@" variabletype="">x_test</field>
                                               </block>
                                             </value>
+                                            <next>
+                                              <block type="text_print" id="DQ!n}$(0,N`@Ek8DX8^8">
+                                                <value name="TEXT">
+                                                  <block type="get_coefficients" id="$/)oj5!1sIpFaEZLE._3"></block>
+                                                </value>
+                                                <next>
+                                                  <block type="text_print" id="Gz4B0yeGc8;OkNIH93oV">
+                                                    <value name="TEXT">
+                                                      <block type="get_mean2error" id="8VTCTvV{+oDh.)?Mete]"></block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="text_print" id="yQ%7tggXnFM^jqNQSx-3">
+                                                        <value name="TEXT">
+                                                          <block type="get_accuracy" id="nza*qTQ=mhYOkr8RKrFz"></block>
+                                                        </value>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
                                           </block>
                                         </next>
                                       </block>
@@ -444,7 +469,8 @@
             </div>
             <div class="col-lg-6">
                 <button type="button" class="btn btn-success" onclick="runCode()" id="post-runcode">Run CodeBlocks</button>
-                <span style="white-space: pre-line" id="codegen">// Your code goes here.</span>
+                <span style="white-space: pre-line" id="codegen">// Your code is displayed here.</span>
+                <span style="white-space: pre-line" id="output">// Your output is displayed here.</span>
             </div>
         </div>
         
@@ -523,6 +549,13 @@
                   success : function(json) {  
                       console.log(json); // log the returned json to the console
                       console.log("success"); // another sanity check
+                      var out = document.getElementById('output');
+                      var coef = document.createTextNode('\nCoefficients: ' + json.reg_coef)
+                      var mean = document.createTextNode('\nMean Squared Error: ' + json.mean_sq_err);
+                      var accu = document.createTextNode('\nAccuracy: ' + json.r2_score);
+                      out.appendChild(coef);                      
+                      out.appendChild(mean);                      
+                      out.appendChild(accu);                      
                   },
                   // handle a non-successful response
                   error : function(xhr,errmsg,err) {

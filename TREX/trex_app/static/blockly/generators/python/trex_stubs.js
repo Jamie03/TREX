@@ -15,7 +15,7 @@ Blockly.Python['fit'] = function(block) {
 Blockly.Python['predict'] = function(block) {
   var value_x = Blockly.Python.valueToCode(block, 'X', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = 'y_pred = regr.predict(' + value_x + ')\nprint(regr.coef_)\nprint(mean_squared_error(y_test, y_pred))\nprint(r2_score(y_test, y_pred))\n';
+  var code = 'y_pred = regr.predict(' + value_x + ')\n';
   return code;
 };
 
@@ -72,4 +72,25 @@ Blockly.Python['import_temp'] = function(block) {
   // TODO: Assemble Python into code variable.
   var code = 'import numpy as np\nfrom sklearn import datasets, linear_model\nfrom sklearn.metrics import mean_squared_error, r2_score\n';
   return code;
+};
+
+Blockly.Python['get_coefficients'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'regr.coef_';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['get_mean2error'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'mean_squared_error(y_test, y_pred)';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['get_accuracy'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'r2_score(y_test, y_pred)';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
 };

@@ -140,3 +140,36 @@ Blockly.Blocks['import_temp'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['get_coefficients'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Get Coefficients");
+    this.setOutput(true, null);
+    this.setColour(15);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['get_mean2error'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Get Mean Squared Error");
+    this.setOutput(true, "Number");
+    this.setColour(15);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['get_accuracy'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Get Accuracy");
+    this.setOutput(true, "Number");
+    this.setColour(15);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
