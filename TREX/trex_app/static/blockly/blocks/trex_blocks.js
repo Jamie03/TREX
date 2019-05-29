@@ -5,8 +5,8 @@ Blockly.Blocks['linear_reg'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Ordinary least squares Linear Regression.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html");
   }
 };
 
@@ -112,8 +112,8 @@ Blockly.Blocks['diabetes_data'] = {
         .appendField("Diabetes Dataset");
     this.setOutput(true, null);
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Loads Scikit Learn's diabetes dataset.");
+ this.setHelpUrl("https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py");
   }
 };
 
@@ -125,8 +125,8 @@ Blockly.Blocks['split_data'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(330);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Split the data into training/testing sets.");
+ this.setHelpUrl("https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py");
   }
 };
 
@@ -136,7 +136,7 @@ Blockly.Blocks['import_temp'] = {
         .appendField("Import Libraries");
     this.setNextStatement(true, null);
     this.setColour(15);
- this.setTooltip("");
+ this.setTooltip("Imports necessary libraries from Scikit Learn and Numpy");
  this.setHelpUrl("");
   }
 };
@@ -147,8 +147,8 @@ Blockly.Blocks['get_coefficients'] = {
         .appendField("Get Coefficients");
     this.setOutput(true, null);
     this.setColour(15);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Returns the estimated coefficients for the linear regression problem.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html");
   }
 };
 
@@ -158,18 +158,18 @@ Blockly.Blocks['get_mean2error'] = {
         .appendField("Get Mean Squared Error");
     this.setOutput(true, "Number");
     this.setColour(15);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Returns the mean squared error regression loss for the linear regression problem.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error");
   }
 };
 
 Blockly.Blocks['get_accuracy'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get Accuracy");
+        .appendField("Get Variance Score");
     this.setOutput(true, "Number");
     this.setColour(15);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Returns the R^2 (coefficient of determination) regression score function for the linear regression problem.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score");
   }
 };
