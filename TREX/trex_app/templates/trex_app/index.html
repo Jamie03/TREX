@@ -342,7 +342,17 @@
                       <sep></sep>
                       <category name="Dataset" colour="#a55b5b">
                         <block type="diabetes_data"></block>
-                        <block type="split_data"></block>
+                        <block type="boston_data"></block>
+                        <block type="boston_target"></block>
+                        <block type="diabetes_target"></block>
+                        <block type="remove_data_feature">
+                          <field name="feat">name</field>
+                        </block>
+                        <block type="split_data">
+                          <field name="X" id="b/Rg=COrVn}/48VVOnw8" variabletype="">X</field>
+                          <field name="Y" id="@e0b+Y!?*jKc!DN8?kU#" variabletype="">Y</field>
+                          <field name="thresh">20</field>
+                        </block>
                       </category>
                       <category name="Preprocessing" colour="#5ba5a5">
                         <block type="missing_data">
@@ -362,19 +372,19 @@
                         <block type="fit">
                           <value name="x_train">
                             <block type="variables_get">
-                              <field name="VAR" id="]86A{uj6.|KLSg{xQ4c1" variabletype="">x_train</field>
+                              <field name="VAR" id="Z320ylW9UiC:coG(nq2p" variabletype="">X_train</field>
                             </block>
                           </value>
                           <value name="y_train">
                             <block type="variables_get">
-                              <field name="VAR" id="m}x8ZlOTSWxYx`arf41K" variabletype="">y_train</field>
+                              <field name="VAR" id="ytTJ6SuIZl3UrkR9%)ll" variabletype="">Y_train</field>
                             </block>
                           </value>
                         </block>
                         <block type="predict">
                           <value name="X">
                             <block type="variables_get">
-                              <field name="VAR" id="bL!Y7sbk*snS-Q_X(Qs^" variabletype="">x_test</field>
+                              <field name="VAR" id="j8fwtNK=/1P!sd_wDD4N" variabletype="">X_test</field>
                             </block>
                           </value>
                         </block>
@@ -385,68 +395,108 @@
                           <field name="testval">0</field>
                         </block>
                         <block type="get_coefficients"></block>
-                        <block type="get_mean2error"></block>
-                        <block type="get_accuracy"></block>
+                        <block type="get_mean2error">
+                          <field name="train" id="g5oV-i;Ae[x(//s}.6[P" variabletype="">Y_train</field>
+                          <field name="pred" id="=?M{)m7-e/V}YHgyss4X" variabletype="">Prediction</field>
+                        </block>
+                        <block type="get_accuracy">
+                          <field name="train" id="g5oV-i;Ae[x(//s}.6[P" variabletype="">Y_train</field>
+                          <field name="pred" id="=?M{)m7-e/V}YHgyss4X" variabletype="">Prediction</field>
+                        </block>
                         <block type="import_temp"></block>
                       </category>
                     </xml>
                     <xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
                       <variables>
-                        <variable type="" id="ofsyN}!o-KG6GJ$drJC2">dataset</variable>
-                        <variable type="" id="T+{*]`3=;Ym,AjmYrog6">x_train</variable>
-                        <variable type="" id="ptgR4/X$btOyEEbq6Bsw">y_train</variable>
-                        <variable type="" id="=tozp2dKhkAX(d)c1}#@">x_test</variable>
+                        <variable type="" id="vcafjbK?1gm_di1@%C:a">X</variable>
+                        <variable type="" id="xMe2:)k~~|~A}WSk^nQA">Y</variable>
+                        <variable type="" id="aB/}l:h`JK#-|jGT^@iP">X_train</variable>
+                        <variable type="" id="y~b}Y_(d.RLWW`y!5g+G">Y_train</variable>
+                        <variable type="" id="_x!yf^T9T/*[Jk%tUP#_">Prediction</variable>
+                        <variable type="" id="LC9q_^!^:/:#nKmG@fII">X_test</variable>
+                        <variable type="" id="`ql3z?]!+St!yPKhF/DS">Y_test</variable>
                       </variables>
-                      <block type="import_temp" id="t$,c:fk}gTu?[zNN~g[!" x="63" y="88">
+                      <block type="import_temp" id="crGcT+s!$co7NF4qsOOl" x="113" y="88">
                         <next>
-                          <block type="variables_set" id="AjIURo+G9VUJ{E[+ko]j">
-                            <field name="VAR" id="ofsyN}!o-KG6GJ$drJC2" variabletype="">dataset</field>
+                          <block type="variables_set" id="0%9)wle9D-4RGQJB:M4@">
+                            <field name="VAR" id="vcafjbK?1gm_di1@%C:a" variabletype="">X</field>
                             <value name="VALUE">
-                              <block type="diabetes_data" id="K|Dm7(8tVrBV#^hW`0Nf"></block>
+                              <block type="boston_data" id="?O^e1}XJ[0)Z+.S~O?(4"></block>
                             </value>
                             <next>
-                              <block type="split_data" id="wrcNo)Ufxe8-i=~729[C">
-                                <value name="data_in">
-                                  <block type="variables_get" id="13{#%nO^P:tWoAv(Kvq{">
-                                    <field name="VAR" id="ofsyN}!o-KG6GJ$drJC2" variabletype="">dataset</field>
-                                  </block>
+                              <block type="variables_set" id="I`kIv4V7.:rUl)Ochjsf">
+                                <field name="VAR" id="xMe2:)k~~|~A}WSk^nQA" variabletype="">Y</field>
+                                <value name="VALUE">
+                                  <block type="boston_target" id="U9Ku.[9l#bO,]C)prOX4"></block>
                                 </value>
                                 <next>
-                                  <block type="linear_reg" id=")DSH~lk,3iCIjWsue1{@">
+                                  <block type="remove_data_feature" id="]JokRw3s@D(?BdyAA?E?">
+                                    <field name="feat">NOX</field>
                                     <next>
-                                      <block type="fit" id="_b*~en_Cey:@0%By+T(l">
-                                        <value name="x_train">
-                                          <block type="variables_get" id="l]0^1%R0+FCd!hjHNJ^R">
-                                            <field name="VAR" id="T+{*]`3=;Ym,AjmYrog6" variabletype="">x_train</field>
-                                          </block>
-                                        </value>
-                                        <value name="y_train">
-                                          <block type="variables_get" id="XleU|a#|xiTf(~1X*zWH">
-                                            <field name="VAR" id="ptgR4/X$btOyEEbq6Bsw" variabletype="">y_train</field>
-                                          </block>
-                                        </value>
+                                      <block type="split_data" id="DDu.^:dZ4(B6/VH(3OSr">
+                                        <field name="X" id="vcafjbK?1gm_di1@%C:a" variabletype="">X</field>
+                                        <field name="Y" id="xMe2:)k~~|~A}WSk^nQA" variabletype="">Y</field>
+                                        <field name="thresh">20</field>
                                         <next>
-                                          <block type="predict" id="R2I[8XDIi*NyBICki5=H">
-                                            <value name="X">
-                                              <block type="variables_get" id="tI6,j;%{GSLQS$cm-]A]">
-                                                <field name="VAR" id="=tozp2dKhkAX(d)c1}#@" variabletype="">x_test</field>
-                                              </block>
-                                            </value>
+                                          <block type="linear_reg" id="ruc~c2-+Qyru;/w:l4vv">
                                             <next>
-                                              <block type="text_print" id="DQ!n}$(0,N`@Ek8DX8^8">
-                                                <value name="TEXT">
-                                                  <block type="get_coefficients" id="$/)oj5!1sIpFaEZLE._3"></block>
+                                              <block type="fit" id="!)M/-n[=cnI?Wrvaad3T">
+                                                <value name="x_train">
+                                                  <block type="variables_get" id="hSYgqv@-7][,OL?6qt`e">
+                                                    <field name="VAR" id="aB/}l:h`JK#-|jGT^@iP" variabletype="">X_train</field>
+                                                  </block>
+                                                </value>
+                                                <value name="y_train">
+                                                  <block type="variables_get" id="^g=yA,(LTp|i@dSm(]9`">
+                                                    <field name="VAR" id="y~b}Y_(d.RLWW`y!5g+G" variabletype="">Y_train</field>
+                                                  </block>
                                                 </value>
                                                 <next>
-                                                  <block type="text_print" id="Gz4B0yeGc8;OkNIH93oV">
-                                                    <value name="TEXT">
-                                                      <block type="get_mean2error" id="8VTCTvV{+oDh.)?Mete]"></block>
+                                                  <block type="variables_set" id="EHsM7P.(jmOPpEn5NL]3">
+                                                    <field name="VAR" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
+                                                    <value name="VALUE">
+                                                      <block type="predict" id="u[zGFPQ:.8x/Aa1mdCtE">
+                                                        <value name="X">
+                                                          <block type="variables_get" id="ktBm`V:-%].g/9nQas^3">
+                                                            <field name="VAR" id="LC9q_^!^:/:#nKmG@fII" variabletype="">X_test</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
                                                     </value>
                                                     <next>
-                                                      <block type="text_print" id="yQ%7tggXnFM^jqNQSx-3">
+                                                      <block type="text_print" id="!ch]UTNlaOUCb:;$?roI">
                                                         <value name="TEXT">
-                                                          <block type="get_accuracy" id="nza*qTQ=mhYOkr8RKrFz"></block>
+                                                          <shadow type="text" id=":S,33$$.#;4)raiN9T22">
+                                                            <field name="TEXT">abc</field>
+                                                          </shadow>
+                                                          <block type="get_coefficients" id="]zyw6ka7J1Cbp/;hX-8l"></block>
                                                         </value>
+                                                        <next>
+                                                          <block type="text_print" id="*J|oF{)Pg_FN|o3I0j%5">
+                                                            <value name="TEXT">
+                                                              <shadow type="text" id="yM4DXy`MA.yd^P+Hj9T|">
+                                                                <field name="TEXT">abc</field>
+                                                              </shadow>
+                                                              <block type="get_mean2error" id="G{O{AoIRe](0U-4VB(5V">
+                                                                <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
+                                                                <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="text_print" id="JntHJx;RA=%Lc*CjV_7C">
+                                                                <value name="TEXT">
+                                                                  <shadow type="text" id="4Q^^:!401(Rb6(:IdbuH">
+                                                                    <field name="TEXT">abc</field>
+                                                                  </shadow>
+                                                                  <block type="get_accuracy" id="P$X^P_t.68!rxlml$6j+">
+                                                                    <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
+                                                                    <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
                                                       </block>
                                                     </next>
                                                   </block>

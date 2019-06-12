@@ -15,8 +15,9 @@ Blockly.Python['fit'] = function(block) {
 Blockly.Python['predict'] = function(block) {
   var value_x = Blockly.Python.valueToCode(block, 'X', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = 'y_pred = regr.predict(' + value_x + ')\n';
-  return code;
+  var code = 'regr.predict(' + value_x + ')\n';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['test_feature'] = function(block) {
@@ -56,21 +57,30 @@ Blockly.Python['std_features'] = function(block) {
 
 Blockly.Python['diabetes_data'] = function(block) {
   // TODO: Assemble Python into code variable.
-  var code = 'datasets.load_diabetes()';
+  var code = 'pd.DataFrame(diabetes_dataset.data, columns=diabetes_dataset.feature_names)';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['boston_data'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'pd.DataFrame(boston_dataset.data, columns=boston_dataset.feature_names)';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['split_data'] = function(block) {
-  var value_data_in = Blockly.Python.valueToCode(block, 'data_in', Blockly.Python.ORDER_ATOMIC);
+  var variable_x = Blockly.Python.variableDB_.getName(block.getFieldValue('X'), Blockly.Variables.NAME_TYPE);
+  var variable_y = Blockly.Python.variableDB_.getName(block.getFieldValue('Y'), Blockly.Variables.NAME_TYPE);
+  var number_thresh = block.getFieldValue('thresh');
   // TODO: Assemble Python into code variable.
-  var code = 'd = ' + value_data_in + '\nx = d.data[:, np.newaxis, 2]\nx_train = x[:-20]\nx_test = x[-20:]\ny_train = d.target[:-20]\ny_test = d.target[-20:]\n';
+  var code = 'X_train, X_test, Y_train, Y_test = train_test_split(' + variable_x + ', ' + variable_y + ', test_size = ' + number_thresh + '*0.01)\n';
   return code;
 };
 
 Blockly.Python['import_temp'] = function(block) {
   // TODO: Assemble Python into code variable.
-  var code = 'import numpy as np\nfrom sklearn import datasets, linear_model\nfrom sklearn.metrics import mean_squared_error, r2_score\n';
+  var code = 'import numpy as np\nimport pandas as pd\nfrom sklearn import linear_model\nfrom sklearn.metrics import mean_squared_error, r2_score\nboston_dataset = load_boston()\ndiabetes_dataset = load_diabetes()\nfrom sklearn.datasets import load_boston, load_diabetes\nfrom sklearn.model_selection import train_test_split\n';
   return code;
 };
 
@@ -82,15 +92,40 @@ Blockly.Python['get_coefficients'] = function(block) {
 };
 
 Blockly.Python['get_mean2error'] = function(block) {
+  var variable_train = Blockly.Python.variableDB_.getName(block.getFieldValue('train'), Blockly.Variables.NAME_TYPE);
+  var variable_pred = Blockly.Python.variableDB_.getName(block.getFieldValue('pred'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble Python into code variable.
-  var code = 'mean_squared_error(y_test, y_pred)';
+  var code = 'mean_squared_error(' + variable_train + ', ' + variable_pred + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['get_accuracy'] = function(block) {
+  var variable_train = Blockly.Python.variableDB_.getName(block.getFieldValue('train'), Blockly.Variables.NAME_TYPE);
+  var variable_pred = Blockly.Python.variableDB_.getName(block.getFieldValue('pred'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble Python into code variable.
-  var code = 'r2_score(y_test, y_pred)';
+  var code = 'r2_score(' + variable_train + ', ' + variable_pred + ')';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['remove_data_feature'] = function(block) {
+  var text_feat = block.getFieldValue('feat');
+  // TODO: Assemble Python into code variable.
+  var code = 'del X["' + text_feat + '"]\n';
+  return code;
+};
+
+Blockly.Python['diabetes_target'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'diabetes_dataset.target';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['boston_target'] = function(block) {
+  // TODO: Assemble Python into code variable.
+  var code = 'boston_dataset.target';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };

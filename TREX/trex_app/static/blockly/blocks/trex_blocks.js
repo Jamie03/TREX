@@ -31,8 +31,7 @@ Blockly.Blocks['predict'] = {
     this.appendValueInput("X")
         .setCheck("Array")
         .appendField("Predict");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setOutput(true, null);
     this.setColour(105);
  this.setTooltip("Predict using the linear model.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.predict");
@@ -113,15 +112,30 @@ Blockly.Blocks['diabetes_data'] = {
     this.setOutput(true, null);
     this.setColour(0);
  this.setTooltip("Loads Scikit Learn's diabetes dataset.");
- this.setHelpUrl("https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html");
+  }
+};
+
+Blockly.Blocks['boston_data'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Boston Dataset");
+    this.setOutput(true, null);
+    this.setColour(0);
+ this.setTooltip("Loads Scikit Learn's boston housing dataset.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html");
   }
 };
 
 Blockly.Blocks['split_data'] = {
   init: function() {
-    this.appendValueInput("data_in")
-        .setCheck(null)
-        .appendField("Split");
+    this.appendDummyInput()
+        .appendField("Split")
+        .appendField(new Blockly.FieldVariable("X"), "X")
+        .appendField(new Blockly.FieldVariable("Y"), "Y")
+        .appendField("at")
+        .appendField(new Blockly.FieldNumber(0, 10, 90), "thresh")
+        .appendField("%");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(330);
@@ -136,7 +150,7 @@ Blockly.Blocks['import_temp'] = {
         .appendField("Import Libraries");
     this.setNextStatement(true, null);
     this.setColour(15);
- this.setTooltip("Imports necessary libraries from Scikit Learn and Numpy");
+ this.setTooltip("");
  this.setHelpUrl("");
   }
 };
@@ -155,7 +169,9 @@ Blockly.Blocks['get_coefficients'] = {
 Blockly.Blocks['get_mean2error'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get Mean Squared Error");
+        .appendField("Get MSE")
+        .appendField(new Blockly.FieldVariable("Y_train"), "train")
+        .appendField(new Blockly.FieldVariable("Prediction"), "pred");
     this.setOutput(true, "Number");
     this.setColour(15);
  this.setTooltip("Returns the mean squared error regression loss for the linear regression problem.");
@@ -166,10 +182,47 @@ Blockly.Blocks['get_mean2error'] = {
 Blockly.Blocks['get_accuracy'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get Variance Score");
+        .appendField("Get R2 Score")
+        .appendField(new Blockly.FieldVariable("Y_train"), "train")
+        .appendField(new Blockly.FieldVariable("Prediction"), "pred");
     this.setOutput(true, "Number");
     this.setColour(15);
  this.setTooltip("Returns the R^2 (coefficient of determination) regression score function for the linear regression problem.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score");
+  }
+};
+
+Blockly.Blocks['remove_data_feature'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Remove Feature")
+        .appendField(new Blockly.FieldTextInput("name"), "feat");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345);
+ this.setTooltip("Sets two data features for the Linear Regression Model.");
+ this.setHelpUrl("https://towardsdatascience.com/linear-regression-on-boston-housing-dataset-f409b7e4a155");
+  }
+};
+
+Blockly.Blocks['diabetes_target'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Diabetes Target");
+    this.setOutput(true, null);
+    this.setColour(0);
+ this.setTooltip("Loads Scikit Learn's diabetes dataset.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html");
+  }
+};
+
+Blockly.Blocks['boston_target'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Boston Target");
+    this.setOutput(true, null);
+    this.setColour(0);
+ this.setTooltip("Loads Scikit Learn's boston housing dataset target.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html");
   }
 };
