@@ -5,22 +5,21 @@ Blockly.Blocks['linear_reg'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
- this.setTooltip("Ordinary least squares Linear Regression.");
- this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html");
+ this.setTooltip("");
+ this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['fit'] = {
   init: function() {
-    this.appendValueInput("x_train")
-        .setCheck(null)
-        .appendField("Fit X Train");
-    this.appendValueInput("y_train")
-        .setCheck(null)
-        .appendField("Fit Y Train");
+    this.appendDummyInput()
+        .appendField("Fit")
+        .appendField(new Blockly.FieldVariable("X_train"), "x")
+        .appendField("and")
+        .appendField(new Blockly.FieldVariable("Y_train"), "y");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(120);
+    this.setColour(165);
  this.setTooltip("Fit linear model.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.fit");
   }
@@ -28,80 +27,41 @@ Blockly.Blocks['fit'] = {
 
 Blockly.Blocks['predict'] = {
   init: function() {
-    this.appendValueInput("X")
-        .setCheck("Array")
-        .appendField("Predict");
+    this.appendDummyInput()
+        .appendField("Predict")
+        .appendField(new Blockly.FieldVariable("X_test"), "x");
     this.setOutput(true, null);
-    this.setColour(105);
+    this.setColour(165);
  this.setTooltip("Predict using the linear model.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.predict");
-  }
-};
-
-Blockly.Blocks['test_feature'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Test")
-        .appendField(new Blockly.FieldTextInput("feature"), "x")
-        .appendField("with")
-        .appendField(new Blockly.FieldNumber(0), "testval");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(15);
- this.setTooltip("Predicts the value of a feature specified given a value.");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['remove_dups'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Remove")
-        .appendField(new Blockly.FieldDropdown([["Zero Variance","zero_v"], ["Duplicate","dups"]]), "option_dups")
-        .appendField("Features");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(195);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['outliers'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["Remove","remove_ol"], ["Replace","replace_ol"]]), "option_ol")
-        .appendField("Outliers");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(225);
- this.setTooltip("");
- this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['missing_data'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["Remove","remove_md"], ["Replace","replace_md"]]), "option_md")
-        .appendField("Missing Data");
+        .appendField("Replace Missing data in Feature")
+        .appendField(new Blockly.FieldTextInput("name"), "feat");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setColour(210);
+ this.setTooltip("Replaces NaN data with the average value in the selected feature.");
+ this.setHelpUrl("https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html");
   }
 };
 
 Blockly.Blocks['std_features'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Standardize Features");
+        .appendField("Standardize")
+        .appendField(new Blockly.FieldVariable("X"), "x")
+        .appendField("and")
+        .appendField(new Blockly.FieldVariable("Y"), "y");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(210);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Standardize features by removing the mean and scaling to unit variance of the train value and the test value given.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html");
   }
 };
 
@@ -111,19 +71,8 @@ Blockly.Blocks['diabetes_data'] = {
         .appendField("Diabetes Dataset");
     this.setOutput(true, null);
     this.setColour(0);
- this.setTooltip("Loads Scikit Learn's diabetes dataset.");
- this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html");
-  }
-};
-
-Blockly.Blocks['boston_data'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Boston Dataset");
-    this.setOutput(true, null);
-    this.setColour(0);
- this.setTooltip("Loads Scikit Learn's boston housing dataset.");
- this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html");
+ this.setTooltip("");
+ this.setHelpUrl("");
   }
 };
 
@@ -132,15 +81,16 @@ Blockly.Blocks['split_data'] = {
     this.appendDummyInput()
         .appendField("Split")
         .appendField(new Blockly.FieldVariable("X"), "X")
+        .appendField("and")
         .appendField(new Blockly.FieldVariable("Y"), "Y")
         .appendField("at")
         .appendField(new Blockly.FieldNumber(0, 10, 90), "thresh")
         .appendField("%");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(330);
- this.setTooltip("Split the data into training/testing sets.");
- this.setHelpUrl("https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py");
+    this.setColour(165);
+ this.setTooltip("");
+ this.setHelpUrl("");
   }
 };
 
@@ -192,6 +142,17 @@ Blockly.Blocks['get_accuracy'] = {
   }
 };
 
+Blockly.Blocks['boston_data'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Boston Dataset");
+    this.setOutput(true, null);
+    this.setColour(0);
+ this.setTooltip("Loads Scikit Learn's boston housing dataset.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html");
+  }
+};
+
 Blockly.Blocks['remove_data_feature'] = {
   init: function() {
     this.appendDummyInput()
@@ -199,20 +160,9 @@ Blockly.Blocks['remove_data_feature'] = {
         .appendField(new Blockly.FieldTextInput("name"), "feat");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345);
+    this.setColour(210);
  this.setTooltip("Sets two data features for the Linear Regression Model.");
  this.setHelpUrl("https://towardsdatascience.com/linear-regression-on-boston-housing-dataset-f409b7e4a155");
-  }
-};
-
-Blockly.Blocks['diabetes_target'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Diabetes Target");
-    this.setOutput(true, null);
-    this.setColour(0);
- this.setTooltip("Loads Scikit Learn's diabetes dataset.");
- this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html");
   }
 };
 
@@ -224,5 +174,16 @@ Blockly.Blocks['boston_target'] = {
     this.setColour(0);
  this.setTooltip("Loads Scikit Learn's boston housing dataset target.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html");
+  }
+};
+
+Blockly.Blocks['diabetes_target'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Diabetes Target");
+    this.setOutput(true, null);
+    this.setColour(0);
+ this.setTooltip("Loads Scikit Learn's diabetes dataset.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html");
   }
 };

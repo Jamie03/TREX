@@ -4,6 +4,8 @@ from django.shortcuts import render
 from sklearn import linear_model
 import json
 from django.http import JsonResponse
+#from django.http import HttpResponse
+#from django.core import serializers
 
 
 # Create your views here.
@@ -22,29 +24,38 @@ def createmodel(request):
         #print(i)
         #print(_locals) #prints _locals
         #print(_locals.items()) #prints items of dictionary
-        
-    my_exec(request.POST['code'])
-    #print(_locals.items())
-    #print(_locals['regr'].coef_)
+    try:    
+        #my_exec(request.POST['code'])
+        exec('global i; i = %s' % request.POST['code'], globals(), _locals)
+            #print(_locals.items())
+            #print(_locals['regr'].coef_)
+            #Assign Results to variables
+            #Coefficients
+        regcoef = _locals['regr'].coef_.tolist()
+            #Mean Square Error
+        mse =  _locals['mean_squared_error'](_locals['Y_test'], _locals['Prediction'])
+            #r2 Score        
+        scoreR2 = _locals['r2_score'](_locals['Y_test'], _locals['Prediction'])
+
+
+            #print results in console to check 
+        print('Reg_coef', regcoef)
+        print('Mean Squared Error', mse)        
+        print('scoreR2', scoreR2)
+
+        data = { 
+                'reg_coef':  regcoef,
+                'mean_sq_err': mse,
+                'r2_score': scoreR2,
+                'executed':True
+        }
     
-    #Assign Results to variables
-    #Coefficients
-    regcoef = _locals['regr'].coef_[0]
-    #Mean Square Error
-    mse =  _locals['mean_squared_error'](_locals['y_test'], _locals['y_pred'])
-    #r2 Score
-    scoreR2 = _locals['r2_score'](_locals['y_test'], _locals['y_pred'])
-
-
-    #print results in console to check 
-    print('Reg_coef', regcoef)
-    print('Mean Squared Error', mse)
-    print('scoreR2', scoreR2)
-
-    data = { 
-        'reg_coef':  regcoef,
-        'mean_sq_err': mse,
-        'r2_score': scoreR2
-   }
-    #print(exec(request.POST['code'])) #Pass this through JSON
+    except Exception as e:
+        print(e) 
+        data ={
+            'error_message': str(e),
+            'executed': False
+        }
+    
     return JsonResponse(data)
+

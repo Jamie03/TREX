@@ -5,17 +5,17 @@ Blockly.Python['linear_reg'] = function(block) {
 };
 
 Blockly.Python['fit'] = function(block) {
-  var value_x_train = Blockly.Python.valueToCode(block, 'x_train', Blockly.Python.ORDER_ATOMIC);
-  var value_y_train = Blockly.Python.valueToCode(block, 'y_train', Blockly.Python.ORDER_ATOMIC);
+  var variable_x = Blockly.Python.variableDB_.getName(block.getFieldValue('x'), Blockly.Variables.NAME_TYPE);
+  var variable_y = Blockly.Python.variableDB_.getName(block.getFieldValue('y'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble Python into code variable.
-  var code = 'regr.fit(' + value_x_train + ', ' + value_y_train + ')\n';
+  var code = 'regr.fit(' + variable_x + ', ' + variable_y + ')\n';
   return code;
 };
 
 Blockly.Python['predict'] = function(block) {
-  var value_x = Blockly.Python.valueToCode(block, 'X', Blockly.Python.ORDER_ATOMIC);
+  var variable_x = Blockly.Python.variableDB_.getName(block.getFieldValue('x'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble Python into code variable.
-  var code = 'regr.predict(' + value_x + ')\n';
+  var code = 'regr.predict(' + variable_x + ')\n';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
@@ -43,15 +43,17 @@ Blockly.Python['outliers'] = function(block) {
 };
 
 Blockly.Python['missing_data'] = function(block) {
-  var dropdown_option_md = block.getFieldValue('option_md');
+  var text_feat = block.getFieldValue('feat');
   // TODO: Assemble Python into code variable.
-  var code = dropdown_option_md + '()\n';
+  var code = 'X["' + text_feat + '"].fillna(X["' + text_feat + '"].mean(), inplace=True)\n';
   return code;
 };
 
 Blockly.Python['std_features'] = function(block) {
+  var variable_x = Blockly.Python.variableDB_.getName(block.getFieldValue('x'), Blockly.Variables.NAME_TYPE);
+  var variable_y = Blockly.Python.variableDB_.getName(block.getFieldValue('y'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble Python into code variable.
-  var code = 'std_features()\n';
+  var code = 'sc_X = StandardScaler()\n' + variable_x + ' = sc_X.fit_transform(' + variable_x + ')\nsc_y = StandardScaler()\n' + variable_y + ' = sc_y.fit_transform(' + variable_y + '.reshape(-1, 1))\n';
   return code;
 };
 
@@ -80,7 +82,7 @@ Blockly.Python['split_data'] = function(block) {
 
 Blockly.Python['import_temp'] = function(block) {
   // TODO: Assemble Python into code variable.
-  var code = 'import numpy as np\nimport pandas as pd\nfrom sklearn import linear_model\nfrom sklearn.metrics import mean_squared_error, r2_score\nboston_dataset = load_boston()\ndiabetes_dataset = load_diabetes()\nfrom sklearn.datasets import load_boston, load_diabetes\nfrom sklearn.model_selection import train_test_split\n';
+  var code = 'import numpy as np\nimport pandas as pd\nfrom sklearn import linear_model\nfrom sklearn.datasets import load_boston, load_diabetes\nfrom sklearn.metrics import mean_squared_error, r2_score\nboston_dataset = load_boston()\ndiabetes_dataset = load_diabetes()\nfrom sklearn.datasets import load_boston, load_diabetes\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\n';
   return code;
 };
 
