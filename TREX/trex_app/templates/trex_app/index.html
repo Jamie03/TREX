@@ -24,319 +24,6 @@
             <div class="col-lg-6" id="blocklyArea">
                 <div id="blocklyDiv" style="position: absolute">
                     <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
-                      <category name="Logic" colour="#5C81A6">
-                        <block type="controls_if"></block>
-                        <block type="logic_compare">
-                          <field name="OP">EQ</field>
-                        </block>
-                        <block type="logic_operation">
-                          <field name="OP">AND</field>
-                        </block>
-                        <block type="logic_negate"></block>
-                        <block type="logic_boolean">
-                          <field name="BOOL">TRUE</field>
-                        </block>
-                        <block type="logic_null"></block>
-                        <block type="logic_ternary"></block>
-                      </category>
-                      <category name="Loops" colour="#5CA65C">
-                        <block type="controls_repeat_ext">
-                          <value name="TIMES">
-                            <shadow type="math_number">
-                              <field name="NUM">10</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="controls_whileUntil">
-                          <field name="MODE">WHILE</field>
-                        </block>
-                        <block type="controls_for">
-                          <field name="VAR" id="s:Jf{fTpeVqj.qeSI:C@" variabletype="">i</field>
-                          <value name="FROM">
-                            <shadow type="math_number">
-                              <field name="NUM">1</field>
-                            </shadow>
-                          </value>
-                          <value name="TO">
-                            <shadow type="math_number">
-                              <field name="NUM">10</field>
-                            </shadow>
-                          </value>
-                          <value name="BY">
-                            <shadow type="math_number">
-                              <field name="NUM">1</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="controls_forEach">
-                          <field name="VAR" id="_`NvXAiDS=rmqS78D~MS" variabletype="">j</field>
-                        </block>
-                        <block type="controls_flow_statements">
-                          <field name="FLOW">BREAK</field>
-                        </block>
-                      </category>
-                      <category name="Math" colour="#5C68A6">
-                        <block type="math_number">
-                          <field name="NUM">0</field>
-                        </block>
-                        <block type="math_arithmetic">
-                          <field name="OP">ADD</field>
-                          <value name="A">
-                            <shadow type="math_number">
-                              <field name="NUM">1</field>
-                            </shadow>
-                          </value>
-                          <value name="B">
-                            <shadow type="math_number">
-                              <field name="NUM">1</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_single">
-                          <field name="OP">ROOT</field>
-                          <value name="NUM">
-                            <shadow type="math_number">
-                              <field name="NUM">9</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_trig">
-                          <field name="OP">SIN</field>
-                          <value name="NUM">
-                            <shadow type="math_number">
-                              <field name="NUM">45</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_constant">
-                          <field name="CONSTANT">PI</field>
-                        </block>
-                        <block type="math_number_property">
-                          <mutation divisor_input="false"></mutation>
-                          <field name="PROPERTY">EVEN</field>
-                          <value name="NUMBER_TO_CHECK">
-                            <shadow type="math_number">
-                              <field name="NUM">0</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_round">
-                          <field name="OP">ROUND</field>
-                          <value name="NUM">
-                            <shadow type="math_number">
-                              <field name="NUM">3.1</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_on_list">
-                          <mutation op="SUM"></mutation>
-                          <field name="OP">SUM</field>
-                        </block>
-                        <block type="math_modulo">
-                          <value name="DIVIDEND">
-                            <shadow type="math_number">
-                              <field name="NUM">64</field>
-                            </shadow>
-                          </value>
-                          <value name="DIVISOR">
-                            <shadow type="math_number">
-                              <field name="NUM">10</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_constrain">
-                          <value name="VALUE">
-                            <shadow type="math_number">
-                              <field name="NUM">50</field>
-                            </shadow>
-                          </value>
-                          <value name="LOW">
-                            <shadow type="math_number">
-                              <field name="NUM">1</field>
-                            </shadow>
-                          </value>
-                          <value name="HIGH">
-                            <shadow type="math_number">
-                              <field name="NUM">100</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_random_int">
-                          <value name="FROM">
-                            <shadow type="math_number">
-                              <field name="NUM">1</field>
-                            </shadow>
-                          </value>
-                          <value name="TO">
-                            <shadow type="math_number">
-                              <field name="NUM">100</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="math_random_float"></block>
-                      </category>
-                      <category name="Text" colour="#5CA68D">
-                        <block type="text">
-                          <field name="TEXT"></field>
-                        </block>
-                        <block type="text_join">
-                          <mutation items="2"></mutation>
-                        </block>
-                        <block type="text_append">
-                          <field name="VAR" id="A2h)Ps9,BGKO_u9PZDnh" variabletype="">item</field>
-                          <value name="TEXT">
-                            <shadow type="text">
-                              <field name="TEXT"></field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="text_length">
-                          <value name="VALUE">
-                            <shadow type="text">
-                              <field name="TEXT">abc</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="text_isEmpty">
-                          <value name="VALUE">
-                            <shadow type="text">
-                              <field name="TEXT"></field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="text_indexOf">
-                          <field name="END">FIRST</field>
-                          <value name="VALUE">
-                            <block type="variables_get">
-                              <field name="VAR" id="O7L`kygWE^5MXyk{ZN61" variabletype="">text</field>
-                            </block>
-                          </value>
-                          <value name="FIND">
-                            <shadow type="text">
-                              <field name="TEXT">abc</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="text_charAt">
-                          <mutation at="true"></mutation>
-                          <field name="WHERE">FROM_START</field>
-                          <value name="VALUE">
-                            <block type="variables_get">
-                              <field name="VAR" id="O7L`kygWE^5MXyk{ZN61" variabletype="">text</field>
-                            </block>
-                          </value>
-                        </block>
-                        <block type="text_getSubstring">
-                          <mutation at1="true" at2="true"></mutation>
-                          <field name="WHERE1">FROM_START</field>
-                          <field name="WHERE2">FROM_START</field>
-                          <value name="STRING">
-                            <block type="variables_get">
-                              <field name="VAR" id="O7L`kygWE^5MXyk{ZN61" variabletype="">text</field>
-                            </block>
-                          </value>
-                        </block>
-                        <block type="text_changeCase">
-                          <field name="CASE">UPPERCASE</field>
-                          <value name="TEXT">
-                            <shadow type="text">
-                              <field name="TEXT">abc</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="text_trim">
-                          <field name="MODE">BOTH</field>
-                          <value name="TEXT">
-                            <shadow type="text">
-                              <field name="TEXT">abc</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="text_print">
-                          <value name="TEXT">
-                            <shadow type="text">
-                              <field name="TEXT">abc</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="text_prompt_ext">
-                          <mutation type="TEXT"></mutation>
-                          <field name="TYPE">TEXT</field>
-                          <value name="TEXT">
-                            <shadow type="text">
-                              <field name="TEXT">abc</field>
-                            </shadow>
-                          </value>
-                        </block>
-                      </category>
-                      <category name="Lists" colour="#745CA6">
-                        <block type="lists_create_with">
-                          <mutation items="0"></mutation>
-                        </block>
-                        <block type="lists_create_with">
-                          <mutation items="3"></mutation>
-                        </block>
-                        <block type="lists_repeat">
-                          <value name="NUM">
-                            <shadow type="math_number">
-                              <field name="NUM">5</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="lists_length"></block>
-                        <block type="lists_isEmpty"></block>
-                        <block type="lists_indexOf">
-                          <field name="END">FIRST</field>
-                          <value name="VALUE">
-                            <block type="variables_get">
-                              <field name="VAR" id="VDjnpz.F%VAkpU[b$$nk" variabletype="">list</field>
-                            </block>
-                          </value>
-                        </block>
-                        <block type="lists_getIndex">
-                          <mutation statement="false" at="true"></mutation>
-                          <field name="MODE">GET</field>
-                          <field name="WHERE">FROM_START</field>
-                          <value name="VALUE">
-                            <block type="variables_get">
-                              <field name="VAR" id="VDjnpz.F%VAkpU[b$$nk" variabletype="">list</field>
-                            </block>
-                          </value>
-                        </block>
-                        <block type="lists_setIndex">
-                          <mutation at="true"></mutation>
-                          <field name="MODE">SET</field>
-                          <field name="WHERE">FROM_START</field>
-                          <value name="LIST">
-                            <block type="variables_get">
-                              <field name="VAR" id="VDjnpz.F%VAkpU[b$$nk" variabletype="">list</field>
-                            </block>
-                          </value>
-                        </block>
-                        <block type="lists_getSublist">
-                          <mutation at1="true" at2="true"></mutation>
-                          <field name="WHERE1">FROM_START</field>
-                          <field name="WHERE2">FROM_START</field>
-                          <value name="LIST">
-                            <block type="variables_get">
-                              <field name="VAR" id="VDjnpz.F%VAkpU[b$$nk" variabletype="">list</field>
-                            </block>
-                          </value>
-                        </block>
-                        <block type="lists_split">
-                          <mutation mode="SPLIT"></mutation>
-                          <field name="MODE">SPLIT</field>
-                          <value name="DELIM">
-                            <shadow type="text">
-                              <field name="TEXT">,</field>
-                            </shadow>
-                          </value>
-                        </block>
-                        <block type="lists_sort">
-                          <field name="TYPE">NUMERIC</field>
-                          <field name="DIRECTION">1</field>
-                        </block>
-                      </category>
                       <sep></sep>
                       <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
                       <sep></sep>
@@ -351,8 +38,8 @@
                           <field name="feat">name</field>
                         </block>
                         <block type="std_features">
-                          <field name="train" id="?aK/X2KI=_23t{l6xV+," variabletype="">X_train</field>
-                          <field name="test" id="oEbL`3%I*__5srON}3T]" variabletype="">X_test</field>
+                          <field name="x" id="U-BnTMhOKCF3~t]k0YSU" variabletype="">X</field>
+                          <field name="y" id="Ta.SUWVM9=3$_T-T]e~!" variabletype="">Y</field>
                         </block>
                         <block type="remove_data_feature">
                           <field name="feat">name</field>
@@ -388,101 +75,36 @@
                     </xml>
                     <xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
                       <variables>
-                        <variable type="" id="vcafjbK?1gm_di1@%C:a">X</variable>
-                        <variable type="" id="xMe2:)k~~|~A}WSk^nQA">Y</variable>
-                        <variable type="" id="aB/}l:h`JK#-|jGT^@iP">X_train</variable>
-                        <variable type="" id="y~b}Y_(d.RLWW`y!5g+G">Y_train</variable>
-                        <variable type="" id="_x!yf^T9T/*[Jk%tUP#_">Prediction</variable>
-                        <variable type="" id="LC9q_^!^:/:#nKmG@fII">X_test</variable>
+                        <variable type="" id="?[=q*$^tWRSig)6=t)vm">Coef</variable>
+                        <variable type="" id="V1cas|avSUcu[fB}MRjp">MSE</variable>
                         <variable type="" id="`ql3z?]!+St!yPKhF/DS">Y_test</variable>
+                        <variable type="" id="_x!yf^T9T/*[Jk%tUP#_">Prediction</variable>
+                        <variable type="" id="9~2t,?[4N=w5r?m+Fb[K">R2</variable>
                       </variables>
-                      <block type="import_temp" id="crGcT+s!$co7NF4qsOOl" x="113" y="88">
+                      <block type="import_temp" id="crGcT+s!$co7NF4qsOOl" x="113" y="88"></block>
+                      <block type="variables_set" id="M:XS|1*3Wt[gpRYQ:?FW" x="113" y="313">
+                        <field name="VAR" id="?[=q*$^tWRSig)6=t)vm" variabletype="">Coef</field>
+                        <value name="VALUE">
+                          <block type="get_coefficients" id="]zyw6ka7J1Cbp/;hX-8l"></block>
+                        </value>
                         <next>
-                          <block type="variables_set" id="0%9)wle9D-4RGQJB:M4@">
-                            <field name="VAR" id="vcafjbK?1gm_di1@%C:a" variabletype="">X</field>
+                          <block type="variables_set" id="ae,?#P73]u5YGd|o|hRx">
+                            <field name="VAR" id="V1cas|avSUcu[fB}MRjp" variabletype="">MSE</field>
                             <value name="VALUE">
-                              <block type="boston_data" id="?O^e1}XJ[0)Z+.S~O?(4"></block>
+                              <block type="get_mean2error" id="G{O{AoIRe](0U-4VB(5V">
+                                <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
+                                <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
+                              </block>
                             </value>
                             <next>
-                              <block type="variables_set" id="I`kIv4V7.:rUl)Ochjsf">
-                                <field name="VAR" id="xMe2:)k~~|~A}WSk^nQA" variabletype="">Y</field>
+                              <block type="variables_set" id="tl^T#H=BFtVYm:[}!Z]j">
+                                <field name="VAR" id="9~2t,?[4N=w5r?m+Fb[K" variabletype="">R2</field>
                                 <value name="VALUE">
-                                  <block type="boston_target" id="U9Ku.[9l#bO,]C)prOX4"></block>
-                                </value>
-                                <next>
-                                  <block type="remove_data_feature" id="]JokRw3s@D(?BdyAA?E?">
-                                    <field name="feat">NOX</field>
-                                    <next>
-                                      <block type="std_features" id="$aR.0}4]cFOIqJr:9_`b">
-                                        <field name="x" id="vcafjbK?1gm_di1@%C:a" variabletype="">X</field>
-                                        <field name="y" id="xMe2:)k~~|~A}WSk^nQA" variabletype="">Y</field>
-                                        <next>
-                                          <block type="split_data" id="DDu.^:dZ4(B6/VH(3OSr">
-                                            <field name="X" id="vcafjbK?1gm_di1@%C:a" variabletype="">X</field>
-                                            <field name="Y" id="xMe2:)k~~|~A}WSk^nQA" variabletype="">Y</field>
-                                            <field name="thresh">20</field>
-                                            <next>
-                                              <block type="linear_reg" id="ruc~c2-+Qyru;/w:l4vv">
-                                                <next>
-                                                  <block type="fit" id="!)M/-n[=cnI?Wrvaad3T">
-                                                    <field name="x" id="aB/}l:h`JK#-|jGT^@iP" variabletype="">X_train</field>
-                                                    <field name="y" id="y~b}Y_(d.RLWW`y!5g+G" variabletype="">Y_train</field>
-                                                    <next>
-                                                      <block type="variables_set" id="EHsM7P.(jmOPpEn5NL]3">
-                                                        <field name="VAR" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
-                                                        <value name="VALUE">
-                                                          <block type="predict" id="u[zGFPQ:.8x/Aa1mdCtE">
-                                                            <field name="x" id="LC9q_^!^:/:#nKmG@fII" variabletype="">X_test</field>
-                                                          </block>
-                                                        </value>
-                                                        <next>
-                                                          <block type="text_print" id="!ch]UTNlaOUCb:;$?roI">
-                                                            <value name="TEXT">
-                                                              <shadow type="text" id=":S,33$$.#;4)raiN9T22">
-                                                                <field name="TEXT">abc</field>
-                                                              </shadow>
-                                                              <block type="get_coefficients" id="]zyw6ka7J1Cbp/;hX-8l"></block>
-                                                            </value>
-                                                            <next>
-                                                              <block type="text_print" id="*J|oF{)Pg_FN|o3I0j%5">
-                                                                <value name="TEXT">
-                                                                  <shadow type="text" id="yM4DXy`MA.yd^P+Hj9T|">
-                                                                    <field name="TEXT">abc</field>
-                                                                  </shadow>
-                                                                  <block type="get_mean2error" id="G{O{AoIRe](0U-4VB(5V">
-                                                                    <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
-                                                                    <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
-                                                                  </block>
-                                                                </value>
-                                                                <next>
-                                                                  <block type="text_print" id="JntHJx;RA=%Lc*CjV_7C">
-                                                                    <value name="TEXT">
-                                                                      <shadow type="text" id="4Q^^:!401(Rb6(:IdbuH">
-                                                                        <field name="TEXT">abc</field>
-                                                                      </shadow>
-                                                                      <block type="get_accuracy" id="P$X^P_t.68!rxlml$6j+">
-                                                                        <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
-                                                                        <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
-                                                                      </block>
-                                                                    </value>
-                                                                  </block>
-                                                                </next>
-                                                              </block>
-                                                            </next>
-                                                          </block>
-                                                        </next>
-                                                      </block>
-                                                    </next>
-                                                  </block>
-                                                </next>
-                                              </block>
-                                            </next>
-                                          </block>
-                                        </next>
-                                      </block>
-                                    </next>
+                                  <block type="get_accuracy" id="P$X^P_t.68!rxlml$6j+">
+                                    <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
+                                    <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
                                   </block>
-                                </next>
+                                </value>
                               </block>
                             </next>
                           </block>
