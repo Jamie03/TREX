@@ -24,7 +24,6 @@
             <div class="col-lg-6" id="blocklyArea">
                 <div id="blocklyDiv" style="position: absolute">
                     <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
-                      <sep></sep>
                       <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
                       <sep></sep>
                       <category name="Dataset" colour="#a55b5b">
@@ -70,6 +69,13 @@
                         <block type="get_accuracy">
                           <field name="train" id="g5oV-i;Ae[x(//s}.6[P" variabletype="">Y_train</field>
                           <field name="pred" id="=?M{)m7-e/V}YHgyss4X" variabletype="">Prediction</field>
+                        </block>
+                        <block type="text_print">
+                          <value name="TEXT">
+                            <shadow type="text">
+                              <field name="TEXT">abc</field>
+                            </shadow>
+                          </value>
                         </block>
                       </category>
                     </xml>
