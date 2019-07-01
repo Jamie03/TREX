@@ -6,6 +6,10 @@
     padding-bottom: 1em;
 }
 
+.code {
+    height: 40%;
+}
+
 #post-runcode {
     margin: 1em 0;
 }
@@ -24,8 +28,7 @@
     padding: 1em 1.5em;
     display: block;
     word-wrap: break-word;
-    max-height: 50%;
-    margin-bottom: 1em;
+    height: 100%;
 }
 
 #output {
@@ -42,5 +45,5 @@
     padding: 1em 1.5em;
     display: block;
     word-wrap: break-word;
-    max-height: 40%;
+    height: 100%;
 }

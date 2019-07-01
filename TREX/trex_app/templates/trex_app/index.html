@@ -17,6 +17,7 @@
         <script src="{% static 'blockly/blocks/trex_blocks.js' %}"></script>
         <script src="{% static 'blockly/generators/python/trex_stubs.js' %}"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
         
     </head>
     <body>
@@ -81,36 +82,93 @@
                     </xml>
                     <xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
                       <variables>
+                        <variable type="" id="du=lly~~h(tPOv,q`]:i">X</variable>
+                        <variable type="" id="+.9aL99|7w)#96X05K/R">Y</variable>
+                        <variable type="" id="4fGk![J;1Cq6s`E;;m.Q">X_train</variable>
+                        <variable type="" id="eDddAwbdCqD`W[zxh*m9">Y_train</variable>
+                        <variable type="" id="_x!yf^T9T/*[Jk%tUP#_">Prediction</variable>
+                        <variable type="" id="rElhqXNNO2bk#?ovll`R">X_test</variable>
                         <variable type="" id="?[=q*$^tWRSig)6=t)vm">Coef</variable>
                         <variable type="" id="V1cas|avSUcu[fB}MRjp">MSE</variable>
                         <variable type="" id="`ql3z?]!+St!yPKhF/DS">Y_test</variable>
-                        <variable type="" id="_x!yf^T9T/*[Jk%tUP#_">Prediction</variable>
                         <variable type="" id="9~2t,?[4N=w5r?m+Fb[K">R2</variable>
                       </variables>
-                      <block type="import_temp" id="crGcT+s!$co7NF4qsOOl" x="113" y="88"></block>
-                      <block type="variables_set" id="M:XS|1*3Wt[gpRYQ:?FW" x="113" y="313">
-                        <field name="VAR" id="?[=q*$^tWRSig)6=t)vm" variabletype="">Coef</field>
-                        <value name="VALUE">
-                          <block type="get_coefficients" id="]zyw6ka7J1Cbp/;hX-8l"></block>
-                        </value>
+                      <block type="import_temp" id="crGcT+s!$co7NF4qsOOl" x="113" y="88">
                         <next>
-                          <block type="variables_set" id="ae,?#P73]u5YGd|o|hRx">
-                            <field name="VAR" id="V1cas|avSUcu[fB}MRjp" variabletype="">MSE</field>
+                          <block type="variables_set" id="p}BD2Z8B%FWpt;2{,xhd">
+                            <field name="VAR" id="du=lly~~h(tPOv,q`]:i" variabletype="">X</field>
                             <value name="VALUE">
-                              <block type="get_mean2error" id="G{O{AoIRe](0U-4VB(5V">
-                                <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
-                                <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
-                              </block>
+                              <block type="boston_data" id="gU}+El$i8:u53b6{a(s6"></block>
                             </value>
                             <next>
-                              <block type="variables_set" id="tl^T#H=BFtVYm:[}!Z]j">
-                                <field name="VAR" id="9~2t,?[4N=w5r?m+Fb[K" variabletype="">R2</field>
+                              <block type="variables_set" id="emf/?GI3muZ@%~7.!1@f">
+                                <field name="VAR" id="+.9aL99|7w)#96X05K/R" variabletype="">Y</field>
                                 <value name="VALUE">
-                                  <block type="get_accuracy" id="P$X^P_t.68!rxlml$6j+">
-                                    <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
-                                    <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
-                                  </block>
+                                  <block type="boston_target" id="f`57yE;N+ieOc=JO:_%V"></block>
                                 </value>
+                                <next>
+                                  <block type="std_features" id="_nI@0kSJN4fmqGadpW)r">
+                                    <field name="x" id="du=lly~~h(tPOv,q`]:i" variabletype="">X</field>
+                                    <field name="y" id="+.9aL99|7w)#96X05K/R" variabletype="">Y</field>
+                                    <next>
+                                      <block type="split_data" id="~VC9egea)5uRY@64wxYf">
+                                        <field name="X" id="du=lly~~h(tPOv,q`]:i" variabletype="">X</field>
+                                        <field name="Y" id="+.9aL99|7w)#96X05K/R" variabletype="">Y</field>
+                                        <field name="thresh">30</field>
+                                        <next>
+                                          <block type="linear_reg" id="(4jF;t`}6_TI;i)MT[1w">
+                                            <next>
+                                              <block type="fit" id="O@vm|#fdX7sk$F*15c!-">
+                                                <field name="x" id="4fGk![J;1Cq6s`E;;m.Q" variabletype="">X_train</field>
+                                                <field name="y" id="eDddAwbdCqD`W[zxh*m9" variabletype="">Y_train</field>
+                                                <next>
+                                                  <block type="variables_set" id="VW[l!W?sdtoj55?Z$Cew">
+                                                    <field name="VAR" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
+                                                    <value name="VALUE">
+                                                      <block type="predict" id="xhX!e@vS[9I3Vpstcj9h">
+                                                        <field name="x" id="rElhqXNNO2bk#?ovll`R" variabletype="">X_test</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="variables_set" id="M:XS|1*3Wt[gpRYQ:?FW">
+                                                        <field name="VAR" id="?[=q*$^tWRSig)6=t)vm" variabletype="">Coef</field>
+                                                        <value name="VALUE">
+                                                          <block type="get_coefficients" id="]zyw6ka7J1Cbp/;hX-8l"></block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="variables_set" id="ae,?#P73]u5YGd|o|hRx">
+                                                            <field name="VAR" id="V1cas|avSUcu[fB}MRjp" variabletype="">MSE</field>
+                                                            <value name="VALUE">
+                                                              <block type="get_mean2error" id="G{O{AoIRe](0U-4VB(5V">
+                                                                <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
+                                                                <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="variables_set" id="tl^T#H=BFtVYm:[}!Z]j">
+                                                                <field name="VAR" id="9~2t,?[4N=w5r?m+Fb[K" variabletype="">R2</field>
+                                                                <value name="VALUE">
+                                                                  <block type="get_accuracy" id="P$X^P_t.68!rxlml$6j+">
+                                                                    <field name="train" id="`ql3z?]!+St!yPKhF/DS" variabletype="">Y_test</field>
+                                                                    <field name="pred" id="_x!yf^T9T/*[Jk%tUP#_" variabletype="">Prediction</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
                               </block>
                             </next>
                           </block>
@@ -121,8 +179,15 @@
             </div>
             <div class="col-lg-6">
                 <button type="button" class="btn btn-success" onclick="runCode()" id="post-runcode">Run CodeBlocks</button>
-                <span style="white-space: pre-line" id="codegen">// Your code is displayed here.</span>
-                <span style="white-space: pre-line" id="output">// Your output is displayed here.</span>
+                <div class="row code">
+                    <div class="col-lg-6">
+                        <span style="white-space: pre-line" id="codegen">// Your code is displayed here.</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span style="white-space: pre-line" id="output">// Your output is displayed here.</span>
+                    </div>
+                </div>
+                <canvas id="myChart" max-width="100%" max-height="20%"></canvas>
             </div>
         </div>
         
@@ -198,7 +263,7 @@
                   data: {'code': code},
 
                   // handle a successful response
-                  success : function(json) {  
+                  success : function(json) {
                       console.log(json); // log the returned json to the console
                       console.log("success"); // another sanity check
                       var out = document.getElementById('output');
@@ -209,12 +274,37 @@
                         out.style.color = "Red"
                         out.appendChild(error_msg);
                       }else{
-                      var coef = document.createTextNode('\nCoefficients: ' + json.reg_coef)
-                      var mean = document.createTextNode('\nMean Squared Error: ' + json.mean_sq_err);
-                      var accu = document.createTextNode('\nAccuracy: ' + json.r2_score);
-                      out.appendChild(coef);                      
-                      out.appendChild(mean);                      
-                      out.appendChild(accu);  }                    
+                          var coef = document.createTextNode('\nCoefficients: ' + json.reg_coef)
+                          var mean = document.createTextNode('\nMean Squared Error: ' + json.mean_sq_err);
+                          var accu = document.createTextNode('\nAccuracy: ' + json.r2_score);
+                          out.appendChild(coef);                      
+                          out.appendChild(mean);                      
+                          out.appendChild(accu);
+                          console.log(json.y_test);
+                          console.log(json.pred);
+                          var keys = json.y_test;
+                          var values = json.pred;
+                          let coords = keys.map((v,i) => ({ x: v, y: values[i] }))
+                          var ctx = document.getElementById('myChart').getContext('2d');
+                          var scatterChart = new Chart(ctx, {
+                            type: 'scatter',
+                            data: {
+                                datasets: [{
+                                    label: 'Linear Regression',
+                                    data: coords,
+                                    backgroundColor: "rgba(40, 167, 69, 0.5)"
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        type: 'linear',
+                                        position: 'bottom'
+                                    }]
+                                }
+                            }
+                        });
+                      }                    
                   },
                   // handle a non-successful response
                   error : function(xhr,errmsg,err) {

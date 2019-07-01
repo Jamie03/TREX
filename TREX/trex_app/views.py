@@ -3,6 +3,7 @@ from django.shortcuts import render
 #import numpy as np
 from sklearn import linear_model
 import json
+import numpy as np
 from django.http import JsonResponse
 #from django.http import HttpResponse
 #from django.core import serializers
@@ -30,6 +31,8 @@ def createmodel(request):
             #print(_locals.items())
             #print(_locals['regr'].coef_)
             #Assign Results to variables
+        y_test = np.concatenate(_locals['Y_test'], axis=None).tolist()
+        pred = np.concatenate(_locals['Prediction'], axis=None).tolist()
             #Coefficients
         regcoef = _locals['regr'].coef_.tolist()
             #Mean Square Error
@@ -39,15 +42,19 @@ def createmodel(request):
 
 
             #print results in console to check 
+        print('Y_test', y_test)
+        print('Prediction', pred)
         print('Reg_coef', regcoef)
         print('Mean Squared Error', mse)        
         print('scoreR2', scoreR2)
 
         data = { 
-                'reg_coef':  regcoef,
-                'mean_sq_err': mse,
-                'r2_score': scoreR2,
-                'executed':True
+            'y_test': y_test,
+            'pred': pred,
+            'reg_coef':  regcoef,
+            'mean_sq_err': mse,
+            'r2_score': scoreR2,
+            'executed':True
         }
     
     except Exception as e:
