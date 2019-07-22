@@ -5,8 +5,8 @@ Blockly.Blocks['linear_reg'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Initializes the linear regression model using default parameters.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html");
   }
 };
 
@@ -71,8 +71,8 @@ Blockly.Blocks['diabetes_data'] = {
         .appendField("Diabetes Dataset");
     this.setOutput(true, null);
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Imports the diabetes dataset from the Scikit-learn sample datasets list.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html");
   }
 };
 
@@ -89,8 +89,8 @@ Blockly.Blocks['split_data'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
- this.setTooltip("");
- this.setHelpUrl("");
+ this.setTooltip("Splits and creates variables for the input X and Y arrays into their respective train and test sets with the input percentage.");
+ this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html");
   }
 };
 
@@ -99,8 +99,8 @@ Blockly.Blocks['import_temp'] = {
     this.appendDummyInput()
         .appendField("Import Libraries");
     this.setNextStatement(true, null);
-    this.setColour(15);
- this.setTooltip("");
+    this.setColour(270);
+ this.setTooltip("Imports necessary libraries for the tool to function.");
  this.setHelpUrl("");
   }
 };
