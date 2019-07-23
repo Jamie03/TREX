@@ -15,7 +15,7 @@ Blockly.Python['fit'] = function(block) {
 Blockly.Python['predict'] = function(block) {
   var variable_x = Blockly.Python.variableDB_.getName(block.getFieldValue('x'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble Python into code variable.
-  var code = 'regr.predict(' + variable_x + ')\n';
+  var code = 'regr.predict(' + variable_x + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };

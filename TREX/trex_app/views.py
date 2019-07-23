@@ -2,6 +2,7 @@ from django.shortcuts import render
 #import matplotlib.pyplot as plt
 #import numpy as np
 from sklearn import linear_model
+from sklearn.metrics import mean_squared_error, r2_score
 import json
 import numpy as np
 from django.http import JsonResponse
@@ -32,15 +33,32 @@ def createmodel(request):
         #print(_locals.items())
             #print(_locals['regr'].coef_)
             #Assign Results to variables
-        y_test = np.concatenate(_locals['Y_test'], axis=None).tolist()
-        pred = np.concatenate(_locals['Prediction'], axis=None).tolist()
-            #Coefficients
-        regcoef = _locals['regr'].coef_.tolist()
-            #Mean Square Error
-        mse =  _locals['mean_squared_error'](_locals['Y_test'], _locals['Prediction'])
-            #r2 Score        
-        scoreR2 = _locals['r2_score'](_locals['Y_test'], _locals['Prediction'])
+        try:
+            temptest = _locals['Y_test']
+            temptrain = _locals['Y_train']
+            tempred = _locals['Prediction']
+            tempregr = _locals['regr']
+            if tempred.shape == temptrain.shape:
+                tempy = temptrain
+            elif tempred.shape == temptest.shape:
+                tempy = temptest
+        except Exception:
+            tempy = 0
+            tempred = 0
+            tempregr = 0
         
+        if tempy is not 0 and tempred is not 0 and tempregr is not 0:
+            y_test = np.concatenate(tempy, axis=None).tolist()
+            pred = np.concatenate(tempred, axis=None).tolist()
+            regcoef = _locals['regr'].coef_.tolist()
+            mse =  mean_squared_error(tempy, tempred)
+            scoreR2 = r2_score(tempy, tempred)
+        else:
+            y_test = 0
+            pred = 0
+            regcoef = 0
+            mse = 0
+            scoreR2 = 0 
 
 
 
@@ -62,7 +80,7 @@ def createmodel(request):
             print(q)
             output.append(q)
 
-
+        data = {}
         #For json
         data = { 
             'y_test': y_test,

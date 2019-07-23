@@ -28,7 +28,7 @@
                       <sep></sep>
                       <category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
                       <sep></sep>
-                      <category name="Libraries" colour="#6d5ba5">
+                      <category name="Libraries" colour="#a5805b">
                         <block type="import_temp"></block>
                       </category>
                       <category name="Dataset" colour="#a55b5b">
@@ -37,7 +37,7 @@
                         <block type="boston_target"></block>
                         <block type="diabetes_target"></block>
                       </category>
-                      <category name="Preprocessing" colour="#5b80a5">
+                      <category name="Preprocessing" colour="#6d5ba5">
                         <block type="missing_data">
                           <field name="feat">name</field>
                         </block>
@@ -49,7 +49,7 @@
                           <field name="feat">name</field>
                         </block>
                       </category>
-                      <category name="Linear Regression" colour="#5ba593">
+                      <category name="Linear Regression" colour="#5b80a5">
                         <block type="split_data">
                           <field name="X" id=")HaLjv1o{R~pcFeHXzF8" variabletype="">X</field>
                           <field name="Y" id="c.Ur@u8)RDsP-Ue~7QtC" variabletype="">Y</field>
@@ -61,11 +61,10 @@
                           <field name="y" id="ytTJ6SuIZl3UrkR9%)ll" variabletype="">Y_train</field>
                         </block>
                         <block type="predict">
-                          <field name="x" id="j8fwtNK=/1P!sd_wDD4N" variabletype="">X_test</field>
+                          <field name="x" id="j8fwtNK=/1P!sd_wDD4N" variabletype="">X_train</field>
                         </block>
-                        <block type="text_print"></block>
                       </category>
-                      <category name="Testing" colour="#a5805b">
+                      <category name="Testing" colour="#5ba593">
                         <block type="get_coefficients"></block>
                         <block type="get_mean2error">
                           <field name="train" id="g5oV-i;Ae[x(//s}.6[P" variabletype="">Y_train</field>
@@ -75,6 +74,7 @@
                           <field name="train" id="g5oV-i;Ae[x(//s}.6[P" variabletype="">Y_train</field>
                           <field name="pred" id="=?M{)m7-e/V}YHgyss4X" variabletype="">Prediction</field>
                         </block>
+                        <block type="text_print"></block>
                       </category>
                     </xml>
                     <xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
@@ -102,7 +102,7 @@
                     <div class="col-lg-6">
                         <span style="white-space: pre-line" id="codegen">// Your code is displayed here.</span>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" id="chartarea">
                         <span style="white-space: pre-line" id="output">// Your output is displayed here.</span>
                         <canvas id="myChart"></canvas>
                     </div>
@@ -138,7 +138,6 @@
                 sounds : true, 
                 oneBasedIndex : true
             };
-
             /* Inject your workspace */ 
             var workspace = Blockly.inject(blocklyDiv, options);
             
@@ -245,6 +244,30 @@
                               out.style.color = "Red"
                               out.appendChild(err);
                             }
+                            else if(json.output[i] === 'X_test'){
+                              //Diabetes Dataset Error Handling
+                              var err = document.createTextNode('\nError: cannot print X_test. Dataset is too large, please check the TREX Documentation regarding the Split block.');
+                              out.style.color = "Red"
+                              out.appendChild(err);
+                            }
+                            else if(json.output[i] === 'X_train'){
+                              //Diabetes Dataset Error Handling
+                              var err = document.createTextNode('\nError: cannot print X_train. Dataset is too large, please check the TREX Documentation regarding the Split block.');
+                              out.style.color = "Red"
+                              out.appendChild(err);
+                            }
+                            else if(json.output[i] === 'Y_test'){
+                              //Diabetes Dataset Error Handling
+                              var err = document.createTextNode('\nError: cannot print Y_test. Dataset is too large, please check the TREX Documentation regarding the Split block.');
+                              out.style.color = "Red"
+                              out.appendChild(err);
+                            }
+                            else if(json.output[i] === 'Y_train'){
+                              //Diabetes Dataset Error Handling
+                              var err = document.createTextNode('\nError: cannot print Y_train. Dataset is too large, please check the TREX Documentation regarding the Split block.');
+                              out.style.color = "Red"
+                              out.appendChild(err);
+                            }
                             else{
                               // Output regular string
                               var output = document.createTextNode('\n' + json.output[i]);
@@ -253,11 +276,13 @@
                           }
                           
                           
-                          console.log(json.y_test);
-                          console.log(json.pred);
+                          // console.log(json.y_test);
+                          // console.log(json.pred);
                           var keys = json.y_test;
                           var values = json.pred;
                           let coords = keys.map((v,i) => ({ x: v, y: values[i] }))
+                          $("canvas#myChart").remove();
+                          $("div#chartarea").append('<canvas id="myChart"></canvas>');
                           var ctx = document.getElementById('myChart').getContext('2d');
                           var scatterChart = new Chart(ctx, {
                             type: 'scatter',
@@ -277,7 +302,7 @@
                                 },
                                 aspectRatio: 1
                             }
-                        });
+                        }); 
                       }                    
                   },
                   // handle a non-successful response
