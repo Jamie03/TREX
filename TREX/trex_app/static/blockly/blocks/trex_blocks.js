@@ -30,7 +30,8 @@ Blockly.Blocks['predict'] = {
     this.appendDummyInput()
         .appendField("Predict")
         .appendField(new Blockly.FieldVariable("X_test"), "x");
-    this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(195);
  this.setTooltip("Predict using the linear model.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.predict");

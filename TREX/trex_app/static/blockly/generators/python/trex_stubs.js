@@ -20,6 +20,13 @@ Blockly.Python['predict'] = function(block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
+Blockly.Python['predict'] = function(block) {
+  var variable_x = Blockly.Python.variableDB_.getName(block.getFieldValue('x'), Blockly.Variables.NAME_TYPE);
+  // TODO: Assemble Python into code variable.
+  var code = 'Prediction = regr.predict(' + variable_x + ')\n';
+  return code;
+};
+
 Blockly.Python['test_feature'] = function(block) {
   var text_x = block.getFieldValue('x');
   var number_testval = block.getFieldValue('testval');
