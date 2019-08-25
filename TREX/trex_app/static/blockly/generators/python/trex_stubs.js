@@ -58,9 +58,8 @@ Blockly.Python['missing_data'] = function(block) {
 
 Blockly.Python['std_features'] = function(block) {
   var variable_x = Blockly.Python.variableDB_.getName(block.getFieldValue('x'), Blockly.Variables.NAME_TYPE);
-  var variable_y = Blockly.Python.variableDB_.getName(block.getFieldValue('y'), Blockly.Variables.NAME_TYPE);
   // TODO: Assemble Python into code variable.
-  var code = 'sc_X = StandardScaler()\n' + variable_x + ' = sc_X.fit_transform(' + variable_x + ')\nsc_y = StandardScaler()\n' + variable_y + ' = sc_y.fit_transform(' + variable_y + '.reshape(-1, 1))\n';
+  var code = 'sc_X = StandardScaler()\n' + variable_x + ' = sc_X.fit_transform(' + variable_x + ')\n';
   return code;
 };
 

@@ -32,9 +32,9 @@
                         <block type="import_temp"></block>
                       </category>
                       <category name="Dataset" colour="#a55b5b">
-                        <block type="diabetes_data"></block>
                         <block type="boston_data"></block>
                         <block type="boston_target"></block>
+                        <block type="diabetes_data"></block>
                         <block type="diabetes_target"></block>
                       </category>
                       <category name="Preprocessing" colour="#6d5ba5">
@@ -91,6 +91,59 @@
                         <variable type="" id="9~2t,?[4N=w5r?m+Fb[K">R2</variable>
                       </variables>
                       <block type="import_temp" id="crGcT+s!$co7NF4qsOOl" x="113" y="63">
+                        <next>
+                          <block type="variables_set" id="dk`05UNI5y@*p*ROR+sg">
+                            <field name="VAR" id="bq]1Qd,BV1rpYc-zdsBY">X</field>
+                            <value name="VALUE">
+                              <block type="boston_data" id="irg+Q:*|JOILPPC^~3:|"/>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="Np_DeV$eU4ecL@+c;qp)">
+                                <field name="VAR" id=",qXiGXG42L%j}cI)j+s`">Y</field>
+                                <value name="VALUE">
+                                  <block type="boston_target" id="TTQRL1:L!#(;t3BTcci3"/>
+                                </value>
+                                <next>
+                                  <block type="std_features" id="SP~gu%(u4_c,OlwTd0lU">
+                                    <field name="x" id="bq]1Qd,BV1rpYc-zdsBY">X</field>
+                                    <next>
+                                      <block type="split_data" id="4;ImHJGwzVU@QR:w%9-1">
+                                        <field name="X" id="bq]1Qd,BV1rpYc-zdsBY">X</field>
+                                        <field name="Y" id=",qXiGXG42L%j}cI)j+s`">Y</field>
+                                        <field name="thresh">30</field>
+                                        <next>
+                                          <block type="linear_reg" id="lcbuQq*.~k}D.u;,-;hI">
+                                            <next>
+                                              <block type="fit" id="etIZqxN9O-z[SWP|DT$}">
+                                                <field name="x" id="rC]d}PgU}Y]^7v-mMJlA">X_train</field>
+                                                <field name="y" id="4$DG$14tEWNUeT=|!lC!">Y_train</field>
+                                                <next>
+                                                  <block type="predict" id="BoMjp`w/TcN16,+M*aAm">
+                                                    <field name="x" id="tB7^lLtVu.XTRqI~8rVb">X_test</field>
+                                                    <next>
+                                                      <block type="text_print" id="G39Y^=nqJW5DDch.Zn)]">
+                                                        <value name="TEXT">
+                                                          <block type="get_accuracy" id="-$C]s$a2rQ-RQ(zqM7_I">
+                                                            <field name="train" id="[La7egc]?gEE1R=%rip.">Y_test</field>
+                                                            <field name="pred" id="aIO27/gJ8~Zt6jQ$ObVj">Prediction</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
                       </block>
                     </xml>
                 </div>
@@ -281,29 +334,83 @@
                           var keys = json.y_test;
                           var values = json.pred;
                           let coords = keys.map((v,i) => ({ x: v, y: values[i] }))
+                          
+                          var maxX = -Infinity;
+                          var maxY = -Infinity;
+                          for(var i=0; i<coords.length; i++){
+                              if(coords[i].x > maxX){
+                                  maxX = coords[i].x;
+                              }
+                              if(coords[i].y > maxY){
+                                  maxY = coords[i].y;
+                              }
+                          }
+                          console.log(maxX);
+                          console.log(maxY);
+                          maxX = Math.max(maxX, maxY);
+                          console.log(maxX);
+                          
                           $("canvas#myChart").remove();
                           $("div#chartarea").append('<canvas id="myChart"></canvas>');
                           var ctx = document.getElementById('myChart').getContext('2d');
                           var scatterChart = new Chart(ctx, {
-                            type: 'scatter',
+                            type: 'line',
                             data: {
                                 datasets: [{
-                                    label: 'Linear Regression',
+                                    label: 'Prediction vs. Expected',
                                     data: coords,
-                                    backgroundColor: "rgba(40, 167, 69, 0.5)"
+                                    backgroundColor: "rgba(40, 167, 69, 0.5)",
+                                    showLine: false
+                                }, {
+                                    label: 'RMSE',
+                                    data: [{
+                                        x: maxX*0.1,
+                                        y: maxX*0.1
+                                    }, {
+                                        x: maxX-(maxX*0.1),
+                                        y: maxX-(maxX*0.1)
+                                    }],
+                                    borderColor: "rgba(40, 69, 167, 0.5)",
+                                    pointRadius: 0,
+                                    fill: false
                                 }]
                             },
-                            options: {
-                                scales: {
-                                    xAxes: [{
-                                        type: 'linear',
-                                        position: 'bottom'
-                                    }]
-                                },
-                                aspectRatio: 1
-                            }
-                        }); 
-                      }                    
+                              options: {
+                                  scales: {
+                                      xAxes: [{
+                                          type: 'linear',
+                                          position: 'bottom',
+                                          scaleLabel: {
+                                              display: true,
+                                              labelString: 'Actual Target Data'
+                                          },
+                                          ticks: {
+                                              stepSize: maxX*0.1,
+                                              max: maxX,
+                                              beginAtZero: true
+                                              //suggestedMax: 
+                                          }
+                                      }],
+                                      yAxes: [{
+                                          type: 'linear',
+                                          scaleLabel: {
+                                              display: true,
+                                              labelString: 'Predicted Target Data'
+                                          },
+                                          ticks: {
+                                              min: 0,
+                                              stepSize: maxX*0.1,
+                                              beginAtZero: true,
+                                              max: maxX
+                                          }
+                                      }],
+                                  },
+                                  aspectRatio: 1
+                              }
+                          });
+                          maxX = -Infinity;
+                          maxY = -Infinity;
+                      }
                   },
                   // handle a non-successful response
                   error : function(xhr,errmsg,err) {

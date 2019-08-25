@@ -55,9 +55,7 @@ Blockly.Blocks['std_features'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Standardize")
-        .appendField(new Blockly.FieldVariable("X"), "x")
-        .appendField("and")
-        .appendField(new Blockly.FieldVariable("Y"), "y");
+        .appendField(new Blockly.FieldVariable("X"), "x");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255);
@@ -69,10 +67,10 @@ Blockly.Blocks['std_features'] = {
 Blockly.Blocks['diabetes_data'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Diabetes Dataset");
+        .appendField("Diabetes Features");
     this.setOutput(true, null);
     this.setColour(0);
- this.setTooltip("Imports the diabetes dataset from the Scikit-learn sample datasets list.");
+ this.setTooltip("Loads Scikit Learn's diabetes dataset features.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html");
   }
 };
@@ -133,7 +131,7 @@ Blockly.Blocks['get_mean2error'] = {
 Blockly.Blocks['get_accuracy'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Get R2 Score")
+        .appendField("Get R^2 Score")
         .appendField(new Blockly.FieldVariable("Y_train"), "train")
         .appendField(new Blockly.FieldVariable("Prediction"), "pred");
     this.setOutput(true, "Number");
@@ -146,10 +144,10 @@ Blockly.Blocks['get_accuracy'] = {
 Blockly.Blocks['boston_data'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Boston Dataset");
+        .appendField("Boston Features");
     this.setOutput(true, null);
     this.setColour(0);
- this.setTooltip("Loads Scikit Learn's boston housing dataset.");
+ this.setTooltip("Loads Scikit Learn's boston housing dataset features.");
  this.setHelpUrl("https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_boston.html");
   }
 };
